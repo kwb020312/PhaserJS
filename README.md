@@ -143,3 +143,45 @@ function update() {}
 https://phaser.io/tutorials/making-your-first-phaser-3-game/phaser3-tutorial-src.zip
 
 위 이미지들을 받을 수 있는 공식 홈페이지 주소는 위와 같다
+
+```javascript
+var config = {
+	type: Phaser.AUTO,
+	width: 800,
+	height: 600,
+	physics: {
+		// physics 속성에 물리적인 값들을 넣을 수 있다.
+		default: 'arcade',
+		// arcade 속성을 기본값으로 설정
+		arcade: {
+			gravity: { y: 300 },
+			// 중력을 y 좌표 기준 300 만큼 적용함
+			debug: false
+		}
+	},
+	scene: {
+		preload: preload,
+		create: create,
+		update: update
+	}
+};
+
+function create() {
+	this.add.image(400, 300, 'sky');
+
+	platforms = this.physics.add.staticGroup();
+	// physics 값에 적용되는 그룹을 적용
+	platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+	// ground 이미지 크기를 2배로 하며 배경이 바뀌어도 계속 재생되게함
+	platforms.create(600, 400, 'ground');
+	// 600 * 400 좌표에 ground 이미지 생성
+	platforms.create(50, 250, 'ground');
+	//  ..
+	platforms.create(750, 220, 'ground');
+	//  ..
+}
+```
+
+<img src="./gitImages/Index4.png">
+
+실행결과는 위와 같다.
