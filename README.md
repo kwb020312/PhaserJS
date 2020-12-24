@@ -185,3 +185,42 @@ function create() {
 <img src="./gitImages/Index4.png">
 
 실행결과는 위와 같다.
+
+## 플레이어 생성
+
+```javascript
+player = this.physics.add.sprite(100, 450, 'dude');
+// 플레이어는 100 , 450 좌표에 dude 란 이미지로 생성될 것임을 명시
+
+player.setBounce(0.2);
+// 점프 및 초기생성 위치에서 지면에 충돌할 때 자연스럽게 통통 튀기는 정도 0.2
+player.setCollideWorldBounds(true);
+// 벽을 뚫고 나갈 수 없음
+this.anims.create({
+	key: 'left',
+	frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+	frameRate: 10,
+	repeat: -1
+});
+// left 란 key 값이 주어질 때 dude 란 캐릭터의 이미지는 0번째 부터 3 번째까지 총 4개의 이미지를 사용할 것
+// 프레임은 10 프레임을 사용하며
+// 반복해서 0 부터 4 까지의 이미지를 동작
+this.anims.create({
+	key: 'turn',
+	frames: [{ key: 'dude', frame: 4 }],
+	frameRate: 20
+});
+
+this.anims.create({
+	key: 'right',
+	frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+	frameRate: 10,
+	repeat: -1
+});
+```
+
+<img src="./gitImages/Character.png">
+
+<img src="./gitImages/Chapter5.png">
+
+실행화면은 위와 같다.
