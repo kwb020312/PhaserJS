@@ -136,6 +136,10 @@ function create() {
 function update() {}
 ```
 
+그러므로 화면에 출력되는 것은 400 \* 300 사이즈의 star 이미지 이다.
+
+<img src="./gitImages/Star.png">
+
 https://phaser.io/tutorials/making-your-first-phaser-3-game/phaser3-tutorial-src.zip
 
 위 이미지들을 받을 수 있는 공식 홈페이지 주소는 위와 같다
