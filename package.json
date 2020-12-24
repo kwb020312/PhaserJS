@@ -1,0 +1,11 @@
+{
+  "name": "Phaser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kwb020312/PhaserJS",
+  "author": "kwb020312 <kwb020312@naver.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
