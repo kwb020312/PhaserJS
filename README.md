@@ -224,3 +224,12 @@ this.anims.create({
 <img src="./gitImages/Chapter5.png">
 
 실행화면은 위와 같다.
+
+```javascript
+this.physics.add.collider(player, platforms);
+// 물리적인 환경에 충돌체로 캐릭터와 지면을 추가한다.
+```
+
+<img src="./gitImages/AddCollider.png">
+
+그렇게 한다면 위 사진처럼 캐릭터가 지면에 서있을 수 있게 된다.
