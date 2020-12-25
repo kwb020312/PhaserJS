@@ -42,11 +42,27 @@
 			var game = new Phaser.Game(config);
 
 			function preload() {
-				this.load.image('sky', 'assets/sky.png');
-				this.load.image('ground', 'assets/platform.png');
-				this.load.image('star', 'assets/star.png');
-				this.load.image('bomb', 'assets/bomb.png');
-				this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+				this.load.image(
+					'sky',
+					'https://github.com/kwb020312/PhaserJS/blob/master/phaser3-tutorial-src/assets/sky.png'
+				);
+				this.load.image(
+					'ground',
+					'https://github.com/kwb020312/PhaserJS/blob/master/phaser3-tutorial-src/assets/platform.png'
+				);
+				this.load.image(
+					'star',
+					'https://github.com/kwb020312/PhaserJS/blob/master/phaser3-tutorial-src/assets/star.png'
+				);
+				this.load.image(
+					'bomb',
+					'https://github.com/kwb020312/PhaserJS/blob/master/phaser3-tutorial-src/assets/bomb.png'
+				);
+				this.load.spritesheet(
+					'dude',
+					'https://github.com/kwb020312/PhaserJS/blob/master/phaser3-tutorial-src/assets/dude.png',
+					{ frameWidth: 32, frameHeight: 48 }
+				);
 			}
 
 			function create() {
