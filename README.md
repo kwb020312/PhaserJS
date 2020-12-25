@@ -233,3 +233,70 @@ this.physics.add.collider(player, platforms);
 <img src="./gitImages/AddCollider.png">
 
 그렇게 한다면 위 사진처럼 캐릭터가 지면에 서있을 수 있게 된다.
+
+## 플레이어 이동
+
+```javascript
+cursors = this.input.keyboard.createCursorKeys();
+// 내가 누르는 키를 이벤트로 받을 수 있는 코드이다.
+if (cursors.left.isDown) {
+	// 좌측 키가 눌러져있는가?
+	player.setVelocityX(-160);
+	// 플레이어의 X 좌표를 -160 만큼 이동시킨다.
+	player.anims.play('left', true);
+	// 플레이어 동작 중 left 동작을 활성화 시킨다.
+} else if (cursors.right.isDown) {
+	player.setVelocityX(160);
+	player.anims.play('right', true);
+} else {
+	player.setVelocityX(0);
+	// 플레이어 좌표를 그대로 둔다
+	player.anims.play('turn');
+	// 플레이어 동작 turn 을 활성화시킨다.
+}
+if (cursors.up.isDown && player.body.touching.down) {
+	// 키보드 상향 방향키를 눌렀으며 플레이어 신체가 바닥에 닿아있는가?
+	player.setVelocityY(-330);
+	// Y 좌표를 -330 만큼 이동시킨다.
+}
+```
+
+<img src="./gitImages/Move.png">
+
+해당 화면처럼 움직이기가 가능해진다.
+
+## 별 수집하기
+
+```javascript
+stars = this.physics.add.group({
+	// 별 이라는 변수를 물리그룹에 추가한다
+	key: 'star',
+	// 이미지는 star 이미지
+	repeat: 11,
+	// 처음 1개를 제외한 11개를 더 추가 총 12개
+	setXY: { x: 12, y: 0, stepX: 70 }
+	// 첫 star 의 위치는 12 , 0 그 이후부터는 82 , 0   152 , 0 ...
+});
+
+stars.children.iterate(function (child) {
+	// 생성된 12 개의 자식컴포넌트 의 반복
+	child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+	// 각각의 자식들은 0.4 ~ 0.8 까지의 반동을 갖는다.
+});
+
+this.physics.add.collider(player, platforms);
+this.physics.add.collider(stars, platforms);
+// star 가 지면을 뚫고 내려가지 않도록 방지
+
+this.physics.add.overlap(player, stars, collectStar, null, this);
+// 만약 플레이어 와 stars 가 겹쳤다면 collectStar 함수를 실행해라
+
+function collectStar(player, star) {
+	star.disableBody(true, true);
+	// star 를 가려라
+}
+```
+
+<img src="./gitImages/CollectStar.png">
+
+실행 화면은 위와 같다.
