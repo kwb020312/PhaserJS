@@ -326,3 +326,53 @@ function collectStar(player, star) {
 <img src="./gitImages/GetScore.png">
 
 star 이미지를 4개 먹은 경우 결과화면
+
+## 게임오버
+
+```javascript
+bombs = this.physics.add.group();
+// group 에 bombs 를 추가함
+this.physics.add.collider(bombs, platforms);
+// 지면과 폭탄은 서로 통과할 수 없음을 명시
+this.physics.add.collider(player, bombs, hitBomb, null, this);
+// plyaer 와 bombs 가 접촉했을 경우 hitBomb 함수를 실행함
+function hitBomb(player, bomb) {
+	this.physics.pause();
+	// 이 개체를 멈춤
+	player.setTint(0xff0000);
+	// 이 개체의 색을 빨강색으로 변경
+	player.anims.play('turn');
+	// 이 개체의 동작을 turn 으로 변경
+	gameOver = true;
+	// gameOver 변수를 참으로 변경
+}
+function collectStar(player, star) {
+	star.disableBody(true, true);
+
+	score += 10;
+	scoreText.setText('Score: ' + score);
+
+	if (stars.countActive(true) === 0) {
+		// stars 개체의 수가 0 인 경우
+		stars.children.iterate(function (child) {
+			child.enableBody(true, child.x, 0, true, true);
+		});
+
+		var x = player.x < 400 ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+		// 플레이어의 X 좌표에 따라 x 변수의 값을 변경
+		var bomb = bombs.create(x, 16, 'bomb');
+		// 폭탄을 x ,16 좌표에 bomb 이미지로 생성
+		bomb.setBounce(1);
+		// 반동은 1
+		bomb.setCollideWorldBounds(true);
+		// bomb 는 틀을 벗어날 수 없음
+		bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+	}
+}
+```
+
+별을 다 먹은경우 폭탄이 랜덤하게 튀기며 별은 다시생성 부딪힐 경우 정지하며 게임오버
+
+실행 결과는 아래 사진과 같다.
+
+<img src="./gitImages/GameOver.png">
