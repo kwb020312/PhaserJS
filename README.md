@@ -300,3 +300,29 @@ function collectStar(player, star) {
 <img src="./gitImages/CollectStar.png">
 
 실행 화면은 위와 같다.
+
+## 점수 획득
+
+```javascript
+var score = 0;
+// 점수 0 으로 선언
+var scoreText;
+// 점수를 화면에 표시해줄 변수
+
+scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+// 화면상의 점수는 16 * 16 지점에 score:0 이라는 텍스트로 32px 의 폰트사이즈와 #000 의 컬러를 갖는다.
+
+function collectStar(player, star) {
+	// 위 쪽 별을 얻은경우
+	star.disableBody(true, true);
+
+	score += 10;
+	// 점수에 10점을 더함
+	scoreText.setText('Score: ' + score);
+	// 화면상의 점수에 내 점수 대입
+}
+```
+
+<img src="./gitImages/GetScore.png">
+
+star 이미지를 4개 먹은 경우 결과화면

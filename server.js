@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/test', (req, res) => {
-	res.sendFile(__dirname + '/phaser3-tutorial-src/part8.html');
+	res.sendFile(__dirname + '/phaser3-tutorial-src/part9.html');
 });
 
 app.listen(3000, () => {
